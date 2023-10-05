@@ -8,11 +8,7 @@ router.use('/api', apiRoutes);
 
 //Wildcard route for non-defined endpoints
 router.get('*', async (req, res) => {
-    if (req.session.userId) {
-        const bloggerData = await Blogger.findByPk(req.session.userId);
-        const username = bloggerData.username;
-        res.render('not-found', { username, loggedIn: req.session.loggedIn });
-    }
+ 
     res.render('not-found');
 });
 

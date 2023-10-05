@@ -1,26 +1,23 @@
-# Note Taker App
+# Tech Blog
 
 ![MIT license badge](https://img.shields.io/badge/license-MIT-blue)
 
 ## Description
 
-This Note Taker app was created with the purpose of providing busy people with an easy and reliable way to keep track of their to-dos, thoughts, appointments, etc. By accessing it online, the user will be able to do the following:
-
-1. Write new notes within the provided title and text fields on the right-side of the screen.
-
-2. Saving the notes to a database if they so desire it.
-
-3. Empty the fields in order to write a new note.
-
-4. Select an already saved note from the rendered list of notes retrieved from the database in order to inspect it on the note-pad area to the right.
-
-5. Delete an already saved note if the user no longer has any use for it.
+This full-stack web app serves the all-important purpose of letting experienced developers and students/novices interact with each other by making posts and commenting on them. It has an intuitive design, packed with functionality (See the 'Usage' section) and follows the well-known template of the CMS-style blog. The homepage is designed to be read-only for non-logged-in users
+but by starting a session, either through the login or signup forms, you can unpack many features that will allow to search posts by users/bloggers, add your own posts, comment on them and edit your own posts and comments by either deleting or updating them. Once you are done, you can safely logout knowing that the content you created is safely inside a MySQL database.
 
 For its author, the challenge was an instructive way to :
 
-1. Practice modularization as a way to implement separation of concerns when coding the back-end of the application. In this case, different endpoints get their own node module, and so do custom middleware and helper functions.
+1. Keep practicing modularization as a way to implement separation of concerns. In this case we are following the MVC (Model-View-Controller) and we are coding both the front- and the back-end of the application.
 
-2. Continue learning about the connection between different methods of request (get, post, and delete) using the Fetch API on the front-end and the different routes (including some that utilize Express.js routers) defined on the back-end.
+2. Continue learning about the connection between different methods of request (get, post, put, and delete) using the Fetch API on the front-end and the different routes defined on the back-end. The increased number of routes (sometimes up to three for the same endpoint) vastly increases the difficulty of connecting those two sides of the coin.
+
+3. Keep using Sequelize models to make CRUD operations on the database.
+
+4. The use of templating engines, in particular "handlebars", for producing views on the front-end instead of utilizing regular html documents. It helps somewhat to adhere to the DRY (Dont Repeat Yourself) coding paradigm and to clearly separate the logic part (by means of built-in and custom helpers, and the linked script files) from the rest of it.
+
+5. The use of validators and methods of encryption for information submitted in login and signup forms and the creation of sessions with metadata stored in cookies whose duration you can stipulate.
 
 ## Table of Contents
 
@@ -31,53 +28,95 @@ For its author, the challenge was an instructive way to :
 
 ## Installation
 
-N/A: The full stack application is actually a website deployed to Heroku. See "Credits" section for more information.
+N/A: The full stack application is actually a website deployed to Heroku. See "Credits" section for more information. We built the app using the officially supported Heroku Node.js buildpack and the remote MySQL database ("tech_db") was created using the JawsDB add-on. The db was seeded by running the command "heroku run node  seeds/index.js" to populate the tables from the Heroku CLI.
 
 ## Usage
 
 Disclaimer: Screenshots present the website as rendered on the Google Chrome Version 116.0.5845.188 (Official Build) (64-bit), run in a Windows 11 Home Version 22H2 environment.
 
-1. By navigating to the Heroku URL <https://web-note-taker-b639757599ce.herokuapp.com/>, the user will be presented with the following image:
+1.By navigating to the Heroku URL <https://a-better-tech-blog-23e1fba161e5.herokuapp.com>, the user will be presented with all available blogposts:
 
-![Landing page of the Note Taker website](images/noteTakerApp-1.png)
+![Homepage](assets/TechBlog1.png)
 
-2. Pressing the "Note Taker" navigation link in the homepage will take the user to the 'api/notes' endpoint which in this case renders an empty db.json file because there has not been any added notes:
+2.Users that are not logged-in can view all of the comments for a particular post, but not comment on them:
 
-![Initially the database contains no notes](images/noteTakerApp-2.png)
+![Not logged-in: viewing the comments for a post](assets/TechBlog2.png)
 
-3. If instead, the user presses the "Get Started" button in the homepage, he/she will navigate to the '/notes' page. To the left, there will be an empty note list with the message "No saved Notes" and to the right, there will be a virtual notepad with input fields for title and text of a note with placeholders. Notice the cross-shaped bottom in the upper right corner. It allows the user to clear notepad's fields in order to write a new note:
+3.If you press the "LOGIN" option in the nav bar, the login form will be rendered. If you try to access with wrong credentials, an alert message will appear:
 
-![Initial state of the '/notes' page](images/noteTakerApp-3.png)
+![Trying to login: wrong input](assets/TechBlog3.png)
 
-4. When the user has written something in both fields of the notepad, a save-note button shaped loke a floppy disk appears:
+4.If both the username and the password are validated, the blogger will enter his/her dashboard:
 
-![A recently written active note triggers the appearance of the save button](images/noteTakerApp-4.png)
+![Landing page of the dashboard](assets/TechBlog4.png)
 
-5. After pressing the save button, the note is written (in JSON string format, together with a universally unique id) to the database and a list item is rendered on the left side containing the title of the note and a garbage-can shaped delete button to the right of the title:
+5.The blogger can see all the comments for any of his/her posts:
 
-![Screenshot shows the rendered list item corresponding to the note](images/noteTakerApp-5.png)
+![Selecting one post with all of the commentary](assets/TechBlog5.png)
 
-6. As seen above, once the note is saved, the input fields are cleared. That means that the user can immediately start writing a new note (even one with grammar/syntax errors!):
+6.By selecting the "Edit Your Post" option, the blogger can either delete or update one post:
 
-![Once you save a note, you can automatically start writing a new one](images/noteTakerApp-6.png)
+![Edit-post form](assets/TechBlog6.png)
 
-7. The user can continue adding as much notes as he/she likes by writing them and pressing the save button:
+7.After redirecting to the dashboard landing page, the updated post is rendered:
 
-![Alt text](images/noteTakerApp-8.png)
+![Updated post shown in dashboard](assets/TechBlog7.png)
 
-8. By pressing the delete button on the right side of the note list element, the note will be deleted(meaning the corresponding JSON string will be deleted from 'db.json' and the modified database document will be re-rendered to the left side of the screen):
+8.By pressing the delete button on the edit-post form, the note will be deleted and will not be shown once redirected:
 
-![Note 2 was deleted from the list](images/noteTakerApp-9.png)
+![Post was destroyed!](assets/TechBlog8.png)
 
-9. If the user navigates to '/api/notes' (either by pressing the "Note Taker" nav link in the homepage or by typing the URL in the browser), a .json file containing JSON strings for all notes saved will be rendered:
+9.The user can also add a new post. Here is the add-post form:
 
-![File containing JSON strings for each note saved, including an id](images/noteTakerApp-10.png)
+![Form for creating a new post](assets/TechBlog9.png)
 
-10. If the user so wishes, they can navigate through the static assets contained in the 'public' folder of the app, where they can find the html files, the stylesheet and the scripts used in the front-end:
+10.Afterwards, the newly created post is shown with a message indicating that nobody has commented on it yet:
 
-![Stylesheet for the pages found at 'assets/css/styles.css'](images/staticAssets1.png)
+![New post without comments](assets/TechBlog10.png)
 
-![Script file for the pages found at 'asset/js/index.js' ](images/staticAssets2.png)
+11.It is possible for a blogger to comment even on their own posts:
+
+![Self-commenting](assets/TechBlog11.png)
+
+12.After selecting the option to see all of his/her own comments, the following will be rendered:
+
+![View showing all the comments by the loggedin user](assets/TechBlog12.png)
+
+13.A blogger can also edit each one of his or her own comments. Here is the view of the edit-comment form:
+
+![Edit-comment form](assets/TechBlog13.png)
+
+14.If a user has not written any comments or has deleted all of them, this will be rendered when looking for all of his/her own comments:
+
+![View rendered when you haven't commented on anything](assets/TechBlog14.png)
+
+15.The dashboard has the option of listing all current bloggers with links to all of their posts (just press the username text):
+
+![List of all other bloggers](assets/TechBlog15.png)
+
+16.Here is the view offered when you select a blogger from the previous list:
+
+![View showing all of the posts by a particular blogger](assets/TechBlog16.png)
+
+17.If a logged-in user navigates to the homepage, he/she will have the option to add a comment to any post:
+
+![Homepage view for logged-in user](assets/TechBlog17.png)
+
+18.For new users, there is the option of signing up:
+
+![New user signing-up](assets/TechBlog18.png)
+
+19.Dashboard view for the newly added blogger:
+
+![Alt text](assets/TechBlog19.png)
+
+20.If you try to access any endpoint for wich there is no route, a custom 404 page gets rendered:
+
+![Custom 404 page for all other routes](assets/TechBlog20.png)
+
+Due to the presence of middleware for serving static files, the user will be able to access the CSS code files and the client-side scripts inside the 'public' folder. Here is one of the client-side script files:
+
+![Script file for the login form found at '/scripts/login.js'](assets/TechBlog22.png)
 
 ## Credits
 
@@ -87,26 +126,49 @@ The app is deployed on Heroku at: <https://web-note-taker-b639757599ce.herokuapp
 
 The .gitignore file was lifted from the GitLab class repo found at: <https://git.bootcampcontent.com>.
 
-The starter code for the app (providing its front end), can be found at:  <https://github.com/coding-boot-camp/miniature-eureka>
+The front-end part employs the Bootstrap CSS framework. A minimized version of its library and of the scripts it uses can be found below:
 
-The front-end part employs both the Bootstrap CSS framework and the Font-Awesome third party icon API. Links to the respective libraries are below:
+1. CSS library: <https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css>
 
-<https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css>
+2. Associated scripts: <https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js>
 
-<https://use.fontawesome.com/releases/v5.3.1/css/all.css>
-
-The folder structure of the project and the helper functions and custom middleware has been adapted from those found in the activities and Mini-Project for the Module 11 of the Rutgers Full Stack Bootcamp.
+The folder structure of the project and the helper functions and custom middleware found in the "utils" has been adapted from those found in the activities and Mini-Project for the Module 14 of the Rutgers Full Stack Bootcamp.
 
 This app works in the Node.js JavaScript runtime environment. The latest stable (recommended version) can be found at: <https://nodejs.org/en/download>
 
-We import and make use of the built-in modules "path", "fs" and "util" from the standard library.
-
 We use npm for the specification (semantic versioning) of the app's dependencies and their installation. Here is the URL for the official site of the npm registry: <https://www.npmjs.com>
+Here are the dependencies for the development and production environments that we added, including links to find their most recent versions:
 
-In particular, we added  "express": "^4.16.4"(in order to create and work with servers, middleware, routers, etc.), "path-to-regexp": "^6.2.1" (initially a sub-dependency in the node-modules folder that was updated to get rid of some error messages in the terminal), and "uuid": "^8.3.2" (from this one we just import the v4 function (renamed uuidv4 within the project) so as to give each note a universally unique identifier ) to the Dependencies . You can find the most recent versions of the node packages here:
+Dev-dependencies:
 
-<https://www.npmjs.com/package/express> for Express; <https://www.npmjs.com/package/path-to-regexp> for Path-to-RegExp; and <https://www.npmjs.com/package/uuid> for UUID.
+1. Nodemon: "^2.0.3". Used to continuously track the changes to the .js and .json file while coding and debugging, so as not to have to manually stop and restart the express server from listening at the designated port after each change.
+<https://www.npmjs.com/package/nodemon>
 
+Dependencies:
+
+1. Express: "^4.17.1". In order to create and work with servers, middleware, routers, etc.
+<https://www.npmjs.com/package/express>
+
+2. DotEnv: "^8.2.0". Employed so that we can configure our connections to the database without hardcoding sensititive information that could get compromised by storing the data in environmental variables.
+<https://www.npmjs.com/package/dotenv>
+
+3. MySQL2: "^2.1.0". Used to create a connection to and make queries to the database without having to log to the MySQL shell and enter the queries through its CLI, but instead using scripts in JS files.
+<https://www.npmjs.com/package/mysql2>
+
+4. Sequelize:"^5.21.7". ORM (Object Relational Mapping) package that synchronizes JS (ES6 specification) classes to the database in order to perform CRUD operations in said database and establish associations(realations) between tables using scripts instead of SQL commands (unless we deem convenient or necessary to use literals).
+<https://www.npmjs.com/package/sequelize>
+
+5. Bcrypt: "^5.0.0". We use two methods from this package: bcrypt.hash employs a salting-and-hashing algorithm to encrypt new passwords added to the db during sign-up and bcrypt.compareSync to authenticate the password input for a username that appears in one of the db's records.
+<https://www.npmjs.com/package/bcrypt>
+
+6. Express-Session: "^1.17.1". Allows us to save and destroy login sessions by particular users meeting the authorization criteria. It offers many options in terms of cookie settings and allowed protocols, etc.
+<https://www.npmjs.com/package/express-session>
+
+7. Connect-Session-Sequelize: "^7.0.4". Facilitates linking the sequelize models to the current login session in order to perform CRUD operations on the db through ORMs while the session lasts. Allows the creation of a Sequelize store.
+<https://www.npmjs.com/package/connect-session-sequelize>
+
+8. Express-Handlebars: "^5.2.0". A package that simplifies setting and using the Handlebars template engine while also using an Express server and routers to create RESTful routes.
+<https://www.npmjs.com/package/express-handlebars>
 
 ## How to Contribute
 
@@ -125,6 +187,5 @@ For further questions and comments, you can mail them to the following address: 
 
 ## License
 
-This is an open-source project under the terms of agreement provided by the MIT license. 
+This is an open-source project under the terms of agreement provided by the MIT license.
 For more information, click on the following link: <https://opensource.org/license/mit>
-
