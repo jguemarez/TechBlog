@@ -1,0 +1,130 @@
+
+* {
+  box-sizing: border-box;
+  --background: silver;
+  --lightest: azure;
+  --text-shadow: black;
+  --medium: darkgray;
+  --light: lightgray;
+}
+
+header {
+  border-bottom: 1px solid rgb(18, 230, 230);
+  font-family: Monospace;
+  color: var(--text-shadow);
+  background-color: var(--background);
+}
+
+header span {
+  background-color: aliceblue;
+}
+
+header nav a {
+  text-decoration: none;
+  text-shadow: 1px 1px var(--text-shadow);
+  color: var(--medium);
+}
+
+.card a {
+  text-decoration: none;
+  text-shadow: 1px 1px var(--text-shadow);
+  color: var(--medium);
+}
+
+header .blog-title {
+  text-decoration: none;
+  text-shadow: 3px 3px 3px 3px var(--text-shadow);
+  color: var(--medium);
+  font-size: 60px;
+}
+
+body {
+  border-style: groove;
+  background: linear-gradient(var(--background), var(--lightest), var(--background));
+}
+
+main {
+  border-style: groove;
+  margin: auto;
+  background-color: var(--light);
+}
+
+main h2 {
+  margin-top: 25px;
+  border-style: groove;
+}
+
+form {
+  margin: auto;
+  background: linear-gradient(var(--background), var(--lightest), var(--background));
+  width: 80vw;
+}
+
+.form-group {
+  margin: auto;
+}
+
+input {
+  margin: auto;
+  height: 5vh;
+  width: 75vw;
+}
+
+textarea {
+  width: 45vw;
+  height: 10vh;
+}
+
+.card button {
+  text-decoration: none;
+  text-shadow: 1px 1px var(--text-shadow);
+  color: var(--medium);
+  width: 45vw;
+}
+
+.edit {
+  margin-top: 5px;
+  width: 75vw;
+}
+
+.card {
+  margin: auto;
+  background: linear-gradient(var(--background), var(--lightest), var(--background));
+  width: 80vw;
+}
+
+.card form {
+  width: 45vw;
+  background: inherit;
+}
+
+h3 {
+  background-color: var(--medium);
+}
+
+h3 span {
+  font-size: small;
+}
+
+.no-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #1b89bc;
+  text-decoration: none;
+  font-size: 100%;
+}
+
+.no-button:hover {
+  color: #065b83;
+  text-decoration: underline;
+}
+
+footer {
+  border-style: groove;
+  margin:auto;
+  background-color: var(--light);
+  text-align: center;
+  width: 85.95vw;
+}
