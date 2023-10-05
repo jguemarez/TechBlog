@@ -122,7 +122,6 @@ router.get('/comments', withAuth, async (req, res) => {
           blogger_id: req.session.userId
         }
       });
-      if (!commentsData.length) res.status(404).json({ message: 'You still have not commented on any post.' });
   
       const userNameData = await Blogger.findByPk(req.session.userId, {
         attributes: ['username']

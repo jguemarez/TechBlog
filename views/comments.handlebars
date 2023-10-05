@@ -9,12 +9,18 @@
         <p class="card-text">{{content}}.</p>
     </div>
 </div>
+{{#if comments}}
 <div class ="card">
     <h3 class="card-title" >Here are all of the comments for the selected post: </h3>
 </div>
 {{#each comments as |comment|}}
 {{>comment-details}}
 {{/each}}
+{{else}}
+<div class ="card">
+    <h3 class="card-title">No comments for this post. Login to join the conversation! </h3>
+</div>
+{{/if}}
 <div class ="card">
     <h3><em>Continue Exploring the TechBlog:</em></h3>
     <a href="/">Go Back to the Homepage</a>

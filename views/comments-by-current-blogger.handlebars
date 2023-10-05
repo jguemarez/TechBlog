@@ -4,7 +4,7 @@
         <p>
         <h3 class="card-title"> Hello {{username}}. </h3>
         </p>
-        {{#if comments.length !==0}}
+        {{#if comments}}
         <p> <em>Here are all of your comments:</em></p>
         {{#each comments as |comment|}}
         <h3>Comment for "{{post_title}}" by {{post_author}} </h3>
