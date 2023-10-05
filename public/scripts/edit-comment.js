@@ -12,7 +12,6 @@ const updateCommentHandler = async () => {
       },
     });
       if (response.ok) {
-        alert("Comment was successfully updated.");
         document.location.replace('/api/dashboard/comments');
       } else {
         alert(response.statusText);
@@ -30,7 +29,6 @@ const delCommentHandler = async () => {
     method: 'DELETE',
   });
     if (response.ok) {
-      alert("Comment was successfully deleted.");
       document.location.replace('/api/dashboard/comments');
     } else {
       alert(response.statusText);
