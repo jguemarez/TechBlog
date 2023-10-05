@@ -1,4 +1,5 @@
-const updateCommentHandler = async () => {
+const updateCommentHandler = async (event) => {
+  event.preventDefault();
   const id = document.querySelector('.card-subtitle').textContent
   const content = document.querySelector('#comment-content').value.trim();
 
@@ -22,7 +23,8 @@ const updateCommentHandler = async () => {
 };
 
 
-const delCommentHandler = async () => {
+const delCommentHandler = async (event) => {
+  event.preventDefault();
   const id = document.querySelector('.card-subtitle').textContent
 
   const response = await fetch(`/api/dashboard/comments/${id}/edit`, {

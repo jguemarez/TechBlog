@@ -1,4 +1,5 @@
-const updatePostHandler = async () => {
+const updatePostHandler = async (event) => {
+  event.preventDefault();
   const id = document.querySelector('.card-subtitle').textContent
   const title = document.querySelector('#post-title').value.trim();
   const content = document.querySelector('#post-content').value.trim();
@@ -22,7 +23,8 @@ const updatePostHandler = async () => {
 };
 
 
-const delPostHandler = async () => {
+const delPostHandler = async (event) => {
+  event.preventDefault();
   const id = document.querySelector('.card-subtitle').textContent
 
   const response = await fetch(`/api/dashboard/${id}/edit`, {
