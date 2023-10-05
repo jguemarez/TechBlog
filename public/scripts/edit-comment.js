@@ -12,7 +12,9 @@ const updateCommentHandler = async () => {
       },
     });
       if (response.ok) {
-        document.location.replace('/api/dashboard/comments');
+        await fetch('/api/dashboard/comments', {
+          method: 'GET',
+        }).then((res) => {if(res.ok) document.location.replace('/api/dashboard/comments')});
       } else {
         alert(response.statusText);
       };
@@ -29,7 +31,9 @@ const delCommentHandler = async () => {
     method: 'DELETE',
   });
     if (response.ok) {
-      document.location.replace('/api/dashboard/comments');
+      await fetch('/api/dashboard/comments', {
+        method: 'GET',
+      }).then((res) => {if(res.ok) document.location.replace('/api/dashboard/comments')});    
     } else {
       alert(response.statusText);
     }
