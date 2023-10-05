@@ -1,0 +1,14 @@
+<div class="card" data-id="{{id}}">
+    <div class="card-body">
+        <p>
+        <h3 class="card-title">{{title}}</h3>
+        <span>Created by {{author}} on {{format_date date_created}}</span>
+        </p>
+        <p class="card-text">{{content}}</p>
+            <a href="/posts/{{id}}" class="card-link">See the Comments</a>
+            <a href="/api/dashboard/posts/{{id}}/comment" class="card-link">Add a Comment</a>
+            {{#if isOwnPost }}
+            <a href="/api/dashboard/{{id}}/edit" class="card-link">Edit Your Post</a>
+            {{/if}}
+    </div>
+</div>

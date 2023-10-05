@@ -1,0 +1,20 @@
+<!--Let the blogger view all of his/her posts-->
+{{#if loggedIn}}
+<div class="card">
+    <div class ="card-body">
+        <p>
+        <h2 class= "card-title">{{username}}</h2> 
+        Welcome to your dashboard, <span> user # {{id}}!</span>
+        What do you want to do today?
+        </p>
+    <a href="/api/dashboard/post">Add a New Post</a><br/>
+    <a href="/api/dashboard/comments">See all of Your Comments</a><br/>
+    <a href="/api/dashboard/bloggers">See Posts By Other Bloggers</a>
+    </div>
+</div>
+{{#if blog_posts.length}}
+{{#each blog_posts as |post| }}
+{{>post-details}}
+{{/each}}
+{{/if}}
+{{/if}}

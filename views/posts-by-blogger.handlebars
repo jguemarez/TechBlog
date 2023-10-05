@@ -1,0 +1,13 @@
+<!--Let the blogger view the posts by another blogger-->
+{{#if loggedIn}}
+<div class="card">
+    <div class ="card-body">
+        <h2 class= "card-title">Here are all the posts by {{username}}</h2> 
+    </div>
+</div>
+{{#if allPosts.length}}
+{{#each allPosts as |post| }}
+{{>post-details}}
+{{/each}}
+{{/if}}
+{{/if}}

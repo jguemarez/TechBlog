@@ -1,0 +1,25 @@
+
+<div class="card">
+    <div class="card-body">
+        <p>
+        <h3 class="card-title">{{title}}</h3>
+        <h6 class="card-subtitle mb-2 text-muted">{{id}}</h6>        
+        <span>Created by {{author}} on {{format_date date_created}}</span>
+        </p>
+        <p class="card-text">{{content}}.</p>
+    </div>
+</div>
+<div class ="card">
+    <h3 class="card-title" >Here are all of the comments for the selected post: </h3>
+</div>
+{{#each comments as |comment|}}
+{{>comment-details}}
+{{/each}}
+<div class ="card">
+    <h3><em>Continue Exploring the TechBlog:</em></h3>
+    <a href="/">Go Back to the Homepage</a>
+{{#if loggedIn}}
+    <a href="/api/dashboard">Go Back to the Dashboard</a>
+    <a href="/api/dashboard/bloggers/{{blogger_id}}">See More Posts by the Author</a>
+{{/if}}
+</div>

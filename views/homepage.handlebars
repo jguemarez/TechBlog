@@ -1,0 +1,21 @@
+<!-- Loop over each object in the posts array -->
+{{#each blogPosts as |post| }}
+<div class="card">
+    <div class="card-body">
+        <p>
+        <h3 class="card-title">{{post.title}}</h3>
+        <span>Created by {{post.blogger.username}} on {{format_date post.date_created}}</span>
+        </p>
+        <p class="card-text">{{post.content}}.</p>
+        <a href="/posts/{{post.id}}">See the Comments</a>
+        <!-- Rendered conditionally if logged_in-->
+        {{#if post.loggedIn}}
+        </br>
+        <a href="/api/dashboard/posts/{{post.id}}/comment" >Add a Comment</a>
+       {{/if}}
+    </div>
+</div>
+{{/each}}
+
+ 
+  

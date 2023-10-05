@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <div class="card" style="width: 50vw;">
+  <img src="https://www.vizion.com/wp-content/uploads/2018/09/shutterstock_479042983.jpg" class="card-img-top" alt="Resorce not found image">
+  <div class="card-body">
+    {{#if loggedIn}}
+    <h3>Sorry {{ username }}!</h3>
+    <p class="card-text"> The page that you are searching for does not currently exists.</p>
+    {{else}}
+        <p class="card-text">Sorry! The page that you are searching for does not currently exists.</p>
+    {{/if}}
+  </div>
+</div>
+</div>

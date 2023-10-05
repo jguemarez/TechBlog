@@ -1,0 +1,19 @@
+ {{#if loggedIn}}
+ <div class="card m-auto">
+        <div class="card-body">
+          <h5 class="card-title">Edit Comment</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{id}}</h6>
+          <form class="form signup-form">
+            <div class="form-group">
+            </div>
+            <div class="form-group">
+              <label for="comment-content">Content</label>
+              <textarea class="form-input" type="text" id="comment-content" >{{content}}</textarea>
+            </div>
+            <button class="btn btn-secondary edit" id = "update">Update Comment</button>
+            <button class="btn btn-secondary edit" id= "delete">Delete Comment</button>
+        </div>
+      </div>
+     <script src="/scripts/edit-comment.js"></script>
+{{/if}}
+
